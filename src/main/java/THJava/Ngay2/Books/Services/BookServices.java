@@ -24,8 +24,8 @@ public class BookServices {
 		return bookRepository.findWithOutDelete();
 	}
 
-	public void save(Book product) {
-		bookRepository.save(product);
+	public Book save(Book product) {
+		return bookRepository.save(product);
 	}
 
 	public Book get(long id) {

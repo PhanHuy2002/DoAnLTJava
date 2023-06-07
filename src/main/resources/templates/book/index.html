@@ -19,7 +19,7 @@
 
 	<div align="center" class="container">
 		<h1>Book List</h1>
-		<div sec:authorize="hasAnyAuthority('CREATOR', 'ADMIN')">
+		<div sec:authorize="hasAnyAuthority('CREATER', 'ADMIN')">
 			<a href="/books/new">Create New Book</a>
 		</div>
 		<br /> <br />
@@ -32,6 +32,7 @@
 					<th>Author</th>
 					<th>Price</th>
 					<th>Category</th>
+					<th>Photo</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
@@ -42,6 +43,9 @@
 					<td th:text="${book.author}">Author</td>
 					<td th:text="${book.price}">Price</td>
 					<td th:text="${book.category.name}">Category</td>
+					<td><img class="img-thumbnail"				
+						th:src="@{${book.photosImagePath}}" /></td>
+					<td>
 					<td>
 						<div sec:authorize="hasAnyAuthority('ADMIN', 'EDITOR')">
 							<a th:href="@{'/books/edit/' + ${book.id}}">Edit</a>

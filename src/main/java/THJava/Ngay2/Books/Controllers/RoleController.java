@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import THJava.Ngay2.Books.Models.Role;
 import THJava.Ngay2.Books.Models.User;
@@ -37,7 +39,7 @@ public class RoleController {
 	}
 
 	@PostMapping("/save")
-	public String saveRole(@ModelAttribute("role") Role role) {
+	public String saveRole(@ModelAttribute("role") Role role, @RequestParam("image") MultipartFile multipartFile) {
 		roleService.save(role);
 		return "redirect:/roles";
 	}

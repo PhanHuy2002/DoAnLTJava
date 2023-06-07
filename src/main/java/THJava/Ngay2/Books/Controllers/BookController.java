@@ -10,11 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.opencsv.CSVWriter;
 import com.opencsv.bean.StatefulBeanToCsv;
@@ -26,6 +29,8 @@ import THJava.Ngay2.Books.Models.Book;
 import THJava.Ngay2.Books.Models.User;
 import THJava.Ngay2.Books.Services.BookServices;
 import THJava.Ngay2.Books.Services.CategoryService;
+import THJava.Ngay2.Books.Utils.FileUploadUtil;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
@@ -53,7 +58,18 @@ public class BookController {
 	}
 
 	@PostMapping("/save")
-	public String saveBook(@ModelAttribute("book") Book book) {
+	public String saveBook(@ModelAttribute("book") Book book, @RequestParam("image") MultipartFile multipartFile)throws IOException {
+		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+		if (!multipartFile.isEmpty()) {
+			book.setphotourl(fileName);
+		}else {
+			book.setphotourl(bookServices.get(book.getId()).getphotourl());
+		}
+		Book savedBook = bookServices.save(book);
+		if (!multipartFile.getOriginalFilename().isBlank()) {
+			String uploadDir = "photos/" + savedBook.getId();
+			FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+		}	
 		bookServices.save(book);
 		return "redirect:/books";
 	}

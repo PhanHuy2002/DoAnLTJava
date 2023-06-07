@@ -15,6 +15,8 @@ public class Book {
 	private String author;
 	@Column(name = "price")
 	private Long price;
+	@Column(nullable = true, length = 255)
+	private String photourl;
 	@Column(name="isdeleted",columnDefinition = "boolean default false")
 	private boolean isdeleted;
 	
@@ -24,6 +26,13 @@ public class Book {
 	}
 	public void setIsdeleted(boolean isdeleted) {
 		this.isdeleted = isdeleted;
+	}
+	public String getphotourl() {
+		return photourl;
+	}
+
+	public void setphotourl(String photourl) {
+		this.photourl = photourl;
 	}
 	@ManyToOne
 	@JoinColumn(name = "category_id", nullable = false)
@@ -59,6 +68,13 @@ public class Book {
 	}
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+	@Transient
+	public String getPhotosImagePath() {
+		if (photourl == null || id == null)
+			return null;
+
+		return "/photos/" + id + "/" + photourl;
 	}
 
 }

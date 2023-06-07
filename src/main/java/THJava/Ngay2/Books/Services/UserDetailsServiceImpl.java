@@ -30,8 +30,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
          
         return new CustomUserDetails(user);
 	}
-	public Page<User> findpaginated(int pageNo,int pageSize){
-		Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
-		return this.userRepository.findAll(pageable);
-	}
+//	public Page<User> findpaginated(int pageNo,int pageSize){
+//		Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+//		return this.userRepository.findAll(pageable);
+//	}
 }
