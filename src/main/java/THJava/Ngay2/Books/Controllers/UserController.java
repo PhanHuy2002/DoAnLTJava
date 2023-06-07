@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import THJava.Ngay2.Books.Models.User;
 import THJava.Ngay2.Books.Services.UserService;
+import THJava.Ngay2.Books.Repositories.UserRepository;
 import THJava.Ngay2.Books.Utils.FileUploadUtil;
 import THJava.Ngay2.Books.Services.RoleService;
 
@@ -26,6 +27,8 @@ import THJava.Ngay2.Books.Services.RoleService;
 @RequestMapping("/users")
 @ComponentScan("THJava.Ngay2.Books")
 public class UserController {
+	@Autowired
+    private UserRepository userRepository;
 	@Autowired
 	private UserService userService;
 	@Autowired
@@ -98,5 +101,30 @@ public class UserController {
 			return "redirect:/users";
 		}
 	}
+	
+	@GetMapping("/register")
+    public String registerForm(Model model) {
+        model.addAttribute("user", new User());
+        return "user/register";
+    }
+	@PostMapping("/register")
+    public String registerSubmit(@ModelAttribute User user, Model model) {
+        if (!user.getPassword().equals(user.getPassword())) {
+            model.addAttribute("error", "Mật khẩu và xác nhận mật khẩu không khớp");
+            return "/register.html";
+        }
 
+        if (userRepository.findByUsername(user.getUsername()) != null) {
+            model.addAttribute("error", "Tên đăng nhập đã tồn tại");
+            return "/register.html";
+        }
+
+        if (userRepository.findByEmail(user.getEmail()) != null) {
+            model.addAttribute("error", "Email đã được sử dụng");
+            return "/register.html";
+        }
+
+        userRepository.save(user);
+        return "redirect:/login";
+    }
 }

@@ -14,4 +14,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	public User getUserByEmail(@Param("email")String email);
 	@Query("SELECT u FROM User u WHERE u.tokenforgotpassword = :token")
     public User getUserBytokenforgotpassword(String token);
+	User findByUsername(String username);
+    User findByEmail(String email);
 }
