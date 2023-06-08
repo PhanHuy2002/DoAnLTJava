@@ -16,6 +16,7 @@ import THJava.Ngay2.Books.Services.UserDetailsServiceImpl;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
+	String arrPermitAll[]= new String[] {"/webjars/**","/","/verify"};
 
 	@Bean
 	protected BCryptPasswordEncoder passwordEncoder() {

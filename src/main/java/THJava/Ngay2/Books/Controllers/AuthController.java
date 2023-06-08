@@ -135,5 +135,14 @@ public class AuthController {
 
 		return "auth/reset_password_form";
 	}
-
+	@GetMapping("/verify")
+	public String verifyUser(@Param("code") String code, Model model) {
+		if (userService.verify(code)) {
+			model.addAttribute("message", "Congratulations, your account has been verified.");
+		} else {
+			model.addAttribute("error", "Sorry, we could not verify account. It maybe already verified,\n"
+					+ "        or verification code is incorrect.");
+		}
+		return "auth/result_Verify_form";
+	}
 }

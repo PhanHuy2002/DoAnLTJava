@@ -23,6 +23,8 @@ public class User {
 	private String photourl;
 	@Column(nullable = true, length = 255)
 	private String tokenforgotpassword;
+	@Column(name = "verification_code",length = 255)
+	private String verificationCode;
 	@Column(nullable = true)
 	private LocalDateTime timeexpired;
 	private boolean enabled;
@@ -51,6 +53,11 @@ public class User {
 
 	public void settokenforgotpassword(String tokenforgotpassword) {
 		this.tokenforgotpassword = tokenforgotpassword;
+	}
+
+	public User(String verificationCode) {
+		super();
+		this.verificationCode = verificationCode;
 	}
 
 	public LocalDateTime getTimeexpired() {
@@ -122,6 +129,20 @@ public class User {
 
 	public User() {
 		roles = new HashSet<>();
+	}
+
+	/**
+	 * @return the verificationCode
+	 */
+	public String getVerificationCode() {
+		return verificationCode;
+	}
+
+	/**
+	 * @param verificationCode the verificationCode to set
+	 */
+	public void setVerificationCode(String verificationCode) {
+		this.verificationCode = verificationCode;
 	}
 
 	@Transient

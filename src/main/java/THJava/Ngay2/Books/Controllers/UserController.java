@@ -1,10 +1,15 @@
 package THJava.Ngay2.Books.Controllers;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
+
+import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,12 +26,17 @@ import THJava.Ngay2.Books.Models.User;
 import THJava.Ngay2.Books.Services.UserService;
 import THJava.Ngay2.Books.Repositories.UserRepository;
 import THJava.Ngay2.Books.Utils.FileUploadUtil;
+import THJava.Ngay2.Books.Utils.Utilities;
+import net.bytebuddy.utility.RandomString;
 import THJava.Ngay2.Books.Services.RoleService;
+import THJava.Ngay2.Books.Services.SendmailService;
 
 @Controller
 @RequestMapping("/users")
 @ComponentScan("THJava.Ngay2.Books")
 public class UserController {
+	@Autowired
+	private SendmailService sendmailService;
 	@Autowired
     private UserRepository userRepository;
 	@Autowired
@@ -108,23 +118,16 @@ public class UserController {
         return "user/register";
     }
 	@PostMapping("/register")
-    public String registerSubmit(@ModelAttribute User user, Model model) {
-        if (!user.getPassword().equals(user.getPassword())) {
-            model.addAttribute("error", "Mật khẩu và xác nhận mật khẩu không khớp");
-            return "/register.html";
-        }
+	public String processRegister(User user ,HttpServletRequest request) throws UnsupportedEncodingException, MessagingException {
+		String encodePaddword = passwordEncoder.encode(user.getPassword());
+		user.setPassword(encodePaddword);
+		user.addRoles(roleService.getbyName("USER"));
+		user.setVerificationCode(RandomString.make(30));
+		userService.save(user);
+		sendmailService.sendVerificationEmail(user, Utilities.getSiteURL(request));
 
-        if (userRepository.findByUsername(user.getUsername()) != null) {
-            model.addAttribute("error", "Tên đăng nhập đã tồn tại");
-            return "/register.html";
-        }
-
-        if (userRepository.findByEmail(user.getEmail()) != null) {
-            model.addAttribute("error", "Email đã được sử dụng");
-            return "/register.html";
-        }
-
-        userRepository.save(user);
         return "redirect:/login";
     }
+
+
 }
