@@ -1,26 +1,32 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
     <title>Đăng kí tài khoản</title>
+    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 	<div class="container">
-    	<h1 class="form-signin-heading">Đăng kí tài khoản</h1>
+    	<h1 class="form-signin-heading" style="text-align: center">Register</h1>
     	<form th:action="@{/users/register}" th:object="${user}" method="post">
-        	<label for="username">Tên đăng nhập:</label>
-        	<input type="text" id="username" name="username"><br>
+        	<label for="username" class="sr-only">Username:</label>
+        	<input type="text" id="username" name="username" class="form-control" placeholder="Username"><br>
 
-        	<label for="email">Email:</label>
-        	<input type="email" id="email" name="email"><br>
+        	<label for="email" class="sr-only">Email:</label>
+        	<input type="email" id="email" name="email" class="form-control" placeholder="Email"><br>
 
-        	<label for="password">Mật khẩu:</label>
-        	<input type="password" id="password" name="password"><br>
+        	<label for="password" class="sr-only">Password:</label>
+        	<input type="password" id="password" name="password" class="form-control" placeholder="Password"><br>
 
-        	<label for="confirmPassword">Xác nhận mật khẩu:</label>
-        	<input type="password" id="confirmPassword" name="confirmPassword"><br>
+        	<label for="confirmPassword" class="sr-only">ConfirmPassword:</label>
+        	<input type="password" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="ConfirmPassword"><br>
 
         	<button type="submit" class="btn btn-primary">Sign Up</button>
+        	<div><a href="/login">Already have account</a></div>
     	</form>
     </div>
 </body>

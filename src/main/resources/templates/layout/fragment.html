@@ -26,7 +26,10 @@
 						<li class="nav-item"><a class="nav-link" href="/books">Book</a></li>
 						<li class="nav-item"><a class="nav-link" href="/categories">Category</a></li>
 						<div sec:authorize="hasAuthority('ADMIN')">
-							<li class="nav-item"><a class="nav-link" href="/roles">Role</a></li> <li class="nav-item"><a class="nav-link" href="/users">User</a></li>
+							<li class="nav-item"><a class="nav-link" href="/roles">Role</a></li>
+						</div>
+						<div sec:authorize="hasAuthority('ADMIN')">
+							<li class="nav-item"><a class="nav-link" href="/users">User</a></li>
 						</div>
 					</ul>
 					<ul class="nav navbar-nav flex-row justify-content-between ms-auto">

@@ -44,6 +44,7 @@ public class WebSecurityConfig {
 				.antMatchers("/webjars/**").permitAll()
 				.antMatchers("/forgot_password").permitAll()
 				.antMatchers("/reset_password").permitAll()
+				.antMatchers("/users/register").permitAll()
 				.antMatchers("/books/")
 				.hasAnyAuthority("USER", "CREATER", "EDITOR", "ADMIN")
 				.antMatchers("/books/new").hasAnyAuthority("ADMIN", "CREATER").antMatchers("/books/edit/**")
