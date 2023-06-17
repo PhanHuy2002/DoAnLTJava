@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+g<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -12,48 +12,31 @@
 
 </head>
 <body>
-	<header th:insert="layout/fragment.html :: header"> </header>
-        <h2 style="text-align: center;">Welcome to My Website!</h2></body>
-       <br /> <br />
-       <div align="center" class="container">
-		<table border="1"
-			class="table table-striped table table-hover table-bordered">
-			<thead>
-				<tr>
-					<th>Book ID</th>
-					<th>Title</th>
-					<th>Author</th>
-					<div sec:authorize="hasAnyAuthority('ADMIN', 'EDITOR')">
-						<th>Price</th>
-					</div>
-					<th>Category</th>
-					<th>Photo</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="book : ${books}">
-					<td th:text="${book.id}">Book ID</td>
-					<td th:text="${book.title}">Title</td>
-					<td th:text="${book.author}">Author</td>
-					<div sec:authorize="hasAnyAuthority('ADMIN', 'EDITOR')">
-						<td th:text="${book.price}">Price</td>
-					</div>
-					<td th:text="${book.category.name}">Category</td>
-					<td>
-						<img class="img-thumbnail" th:src="@{${book.photosImagePath}}" />
-					</td>
-					<td>
-<!-- 						<div sec:authorize="hasAnyAuthority('ADMIN', 'EDITOR')"> -->
-<!-- 							<a th:href="@{'/books/edit/' + ${book.id}}">Edit</a> -->
-<!-- 						</div> -->
-<!-- 						<div sec:authorize="hasAuthority('ADMIN')"> -->
-<!-- 							<a th:href="@{'/books/delete/' + ${book.id}}">Delete</a> -->
-<!-- 						</div> -->
-						<a th:href="@{'#'}">Read</a>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-		</div>
+	<header th:insert="layout/fragment.html :: header" > </header>
+	<div class="image">
+	<h1 style="text-align: center;font-size:100px; color:cyan;">Welcome to My Website!</h1>
+</div>
+        
+        
+        <footer>
+    	<h3>Hotline: 09xxxxxxxx</h3>
+    	<h3>Copyright by Phan Thanh Anh Huy</h3>
+    </footer>
+        </body>
+    
 </html>
+<style>
+
+
+.image{
+	background-image: url("https://www.instamojo.com/blog/wp-content/uploads/2020/11/books-online-2-1.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 1000px;
+}
+
+footer{
+	background-color: #adb5bd;
+	text-align: right;
+}
+</style>
