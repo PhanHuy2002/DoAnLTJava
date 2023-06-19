@@ -16,7 +16,7 @@
 	<div align="center" class="container">
 		<h1>Create New Book</h1>
 		<br />
-		<form th:action="@{/books/save}" th:object="${book}" method="post">
+		<form th:action="@{/books/save}" th:object="${book}" method="post" enctype="multipart/form-data">
 			<div class="col-6 mb-3">
 				<label class="col-sm-2 col-form-label">Book Title:</label> <input
 					class="form-control" type="text" th:field="*{title}" />
