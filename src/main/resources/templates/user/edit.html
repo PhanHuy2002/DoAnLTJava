@@ -13,7 +13,8 @@
 </head>
 <body>
 	<header th:insert="layout/fragment.html :: header"> </header>
-	<div align="center" class="container">
+	<div class="image">
+	<div align="center" class="container" style="color:white;">
 		<h1>Edit User</h1>
 		<br />
 		<form th:action="@{/users/save}" th:object="${user}" method="post"
@@ -53,5 +54,14 @@
 			<button type="submit" class="btn btn-primary">Save</button>
 		</form>
 	</div>
+	</div>
 </body>
+<style>
+    .image{
+	background-image: url("https://i.imgur.com/V46lXj7.jpeg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 1000px;
+}
+</style>
 </html>

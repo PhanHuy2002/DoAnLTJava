@@ -10,8 +10,9 @@
     <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+	<div class="image">
 	<div class="container">
-    	<h1 class="form-signin-heading" style="text-align: center">Register</h1>
+    	<h1 class="form-signin-heading" style="text-align: center;color:rgb(235, 128, 48);text-transform: uppercase;">Register</h1>
     	<form th:action="@{/users/register}" th:object="${user}" method="post">
         	<label for="username" class="sr-only">Username:</label>
         	<input type="text" id="username" name="username" class="form-control" placeholder="Username"><br>
@@ -22,12 +23,24 @@
         	<label for="password" class="sr-only">Password:</label>
         	<input type="password" id="password" name="password" class="form-control" placeholder="Password"><br>
 
-        	<label for="confirmPassword" class="sr-only">ConfirmPassword:</label>
+        	<label for="confirmPassword" class="sr-only">Confirm Password:</label>
         	<input type="password" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="ConfirmPassword"><br>
 
         	<button type="submit" class="btn btn-primary">Sign Up</button>
         	<div><a href="/login">Already have account</a></div>
     	</form>
     </div>
+    </div>
 </body>
+<style>
+	.image{
+		background-image: url("https://previews.123rf.com/images/melpomen/melpomen1511/melpomen151100258/47808027-hand-pressing-register-now-on-blurred-cityscape-background.jpg");
+		background-size: cover;
+		background-repeat: no-repeat;
+		height: 700px;
+	}
+	.container{
+	color: red;
+	}
+</style>
 </html>

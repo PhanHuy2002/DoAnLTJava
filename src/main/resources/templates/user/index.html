@@ -14,7 +14,8 @@
 </head>
 <body>
 	<header th:insert="layout/fragment.html :: header"> </header>
-	<div align="center" class="container">
+	<div class="image">
+	<div align="center" class="container" style="color:white">
 		<h1>User List</h1>
 		<div sec:authorize="hasAnyAuthority('ADMIN')">
 			<a href="/users/new">Create New User</a>
@@ -22,7 +23,7 @@
 		<br /> <br />
 		<table border="1" class="table table table-hover table-bordered">
 			<thead>
-				<tr class="text-center align-middle">
+				<tr class="text-center align-middle" style="color:white">
 					<th>User ID</th>
 					<th>UserName</th>
 					<th>Email</th>
@@ -31,7 +32,7 @@
 					<th>Actions</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody style="color:white">
 				<tr class="text-center align-middle" th:each="user : ${users}">
 					<td th:text="${user.id}">User ID</td>
 					<td th:text="${user.username}">UserName</td>
@@ -57,5 +58,14 @@
 			</tbody>
 		</table>
 	</div>
+	</div>
 </body>
+<style>
+.image{
+	background-image: url("https://i.imgur.com/V46lXj7.jpeg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 700px;
+}
+</style>
 </html>

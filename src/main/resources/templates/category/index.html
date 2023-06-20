@@ -13,16 +13,16 @@
 
 </head>
 <body>
-
+	<div class="image">
 	<header th:insert="layout/fragment.html :: header"> </header>
-	<div align="center" class="container">
+	<div align="center" class="container" style="color:white">
 		<h1>Category List</h1>
 		<div sec:authorize="hasAnyAuthority('ADMIN')">
 			<a href="/categories/new">Create A New Category</a>
 		</div>
 		<br /> <br />
 		<table border="1"
-			class="table table-striped table table-hover table-bordered">
+			class="table table-striped table table-hover table-bordered" style="background-color: rgb(94, 183, 170)">
 			<thead>
 				<tr>
 					<th>Category ID</th>
@@ -47,5 +47,14 @@
 			</tbody>
 		</table>
 	</div>
+	</div>
 </body>
+<style>
+.image{
+	background-image: url("https://i.pinimg.com/736x/a7/6a/b7/a76ab7e9233f44535ac5df410528f513.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 700px;
+}
+</style>
 </html>

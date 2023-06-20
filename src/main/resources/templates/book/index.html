@@ -12,7 +12,7 @@
 <style>
     .book-container {
       margin-bottom: 20px;
-      background-color: #f8f9fa;
+      background-color: rgb(231, 220, 126);
       border: 1px solid #dee2e6;
       padding: 10px;
     }
@@ -30,16 +30,24 @@
     .col-lg-3{
       width: 20%;
     }
+    .image{
+	background-image: url("https://wallpapercrafter.com/desktop1/543761-Background-Art-anime-landscape-street-sky-clouds.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 1000px;
+	
+}
   </style>
 </head>
-<body>
+<body >
 	<header th:insert="layout/fragment.html :: header"> </header>
-        <h2 style="text-align: center;">Danh sách Truyện</h2>
+		<div class="image">
+			<h2 style="text-align: center;color: white;">Danh sách Truyện</h2>
         <p>
   <div class="col-4 mb-2" style="text-align: center;">
     <form class="d-flex" th:action="@{/books/search}" method="get">
       <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="keyword">
-      <button class="btn btn-outline-success" type="submit">Search</button>
+      <button class="btn btn-outline-success" type="submit" style="background-color:#dee2e6;color:red;">Search</button>
     </form>
   </div>
           <div sec:authorize="hasAnyAuthority('ADMIN')" style="text-align: center">
@@ -79,6 +87,8 @@
         </div>
       </div>
     </div>
+    </div>
   </div>   
 </body>
+
 </html>

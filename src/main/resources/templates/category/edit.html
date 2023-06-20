@@ -13,7 +13,8 @@
 </head>
 <body>
 	<header th:insert="layout/fragment.html :: header"> </header>
-	<div align="center" class="container">
+	<div class="image">
+	<div align="center" class="container" style="color:white">
 		<h1>Edit Book</h1>
 		<br />
 		<form th:action="@{/categories/save}" th:object="${category}" method="post">
@@ -29,5 +30,14 @@
 			<button type="submit" class="btn btn-primary">Save</button>
 		</form>
 	</div>
+	</div>
 </body>
+<style>
+.image{
+	background-image: url("https://i.pinimg.com/736x/a7/6a/b7/a76ab7e9233f44535ac5df410528f513.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 700px;
+}
+</style>
 </html>
