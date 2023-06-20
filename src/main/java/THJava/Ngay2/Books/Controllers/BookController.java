@@ -48,6 +48,18 @@ public class BookController {
 		model.addAttribute("books", listBook);
 		return "book/index";
 	}
+	
+	@GetMapping("/read/{id}")
+	public String detail(@PathVariable("id") Long id, Model model) {
+//	     Xử lý lấy thông tin của cuốn sách với ID tương ứng
+	    Book book = bookServices.get(id);
+	    
+//	     Đưa thông tin của cuốn sách vào Model để truyền sang View
+	    model.addAttribute("book", book);
+	    
+//	     Trả về tên của View để hiển thị trang chi tiết sách
+	    return "home/read";
+	}
 
 	@GetMapping("/new")
 	public String showNewBookPage(Model model) {

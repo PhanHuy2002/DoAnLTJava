@@ -25,7 +25,8 @@ public class BookServices {
 	}
 
 	public Book save(Book product) {
-		return bookRepository.save(product);
+		bookRepository.save(product);
+		return product;
 	}
 
 	public Book get(long id) {

@@ -1,62 +1,84 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+	xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="utf-8" />
-<title>Book List</title>
+<meta charset="UTF-8">
+<title>Danh sách Truyện</title>
 <link rel="stylesheet" type="text/css"
 	href="/webjars/bootstrap/css/bootstrap.min.css" />
 <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
 <script type="text/javascript"
 	src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+<style>
+    .book-container {
+      margin-bottom: 20px;
+      background-color: #f8f9fa;
+      border: 1px solid #dee2e6;
+      padding: 10px;
+    }
 
+    .book-header {
+      margin-bottom: 10px;
+      border-bottom: 1px solid #dee2e6;
+      padding-bottom: 5px;
+    }
+
+    .book-footer {
+      border-top: 1px solid #dee2e6;
+      padding-top: 5px;
+    }
+    .col-lg-3{
+      width: 20%;
+    }
+  </style>
 </head>
 <body>
-
-
 	<header th:insert="layout/fragment.html :: header"> </header>
-
-	<div align="center" class="container">
-		<h1>Book List</h1>
-		<div sec:authorize="hasAnyAuthority('ADMIN')">
+        <h2 style="text-align: center;">Danh sách Truyện</h2>
+        <p>
+  <div class="col-4 mb-2" style="text-align: center;">
+    <form class="d-flex" th:action="@{/books/search}" method="get">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="keyword">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+  </div>
+          <div sec:authorize="hasAnyAuthority('ADMIN')" style="text-align: center">
 			<a href="/books/new">Create New Book</a>
 		</div>
-		<br /> <br />
-		<table border="1"
-			class="table table-striped table table-hover table-bordered">
-			<thead>
-				<tr>
-					<th>Book ID</th>
-					<th>Title</th>
-					<th>Author</th>
-<!-- 					<th>Price</th> -->
-					<th>Category</th>
-					<th>Photo</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="book : ${books}">
-					<td th:text="${book.id}">Book ID</td>
-					<td th:text="${book.title}">Title</td>
-					<td th:text="${book.author}">Author</td>
-<!-- 					<td th:text="${book.price}">Price</td> -->
-					<td th:text="${book.category.name}">Category</td>
-					<td><img class="img-thumbnail"				
-						th:src="@{${book.photosImagePath}}" /></td>
-					<td>
-					<td>
-						<div sec:authorize="hasAnyAuthority('ADMIN')">
-							<a th:href="@{'/books/edit/' + ${book.id}}">Edit</a>
-						</div>
-						<div sec:authorize="hasAuthority('ADMIN')">
-							<a th:href="@{'/books/delete/' + ${book.id}}">Delete</a>
-						</div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
+  </p>
+     <div class="row" >
+    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" th:each="book : ${books}" style="margin:auto;">
+      <div class="book-container" style="width: 300px " >
+        <div class="panel panel-default">
+          <div class="panel-heading book-header">
+            <h5 th:text="${book.title}"></h5>
+          </div>
+          <div class="panel-body" style="text-align: center;">
+			<td> 
+				<img class="img-thumbnail" th:src="@{${book.photosImagePath}}" style="width: 200px; height: 200px" />
+ 			</td>
+            <p>Author: <span th:text="${book.author}"></span></p>
+            <p>Category: <span th:text="${book.category.name}"></span></p>
+          </div>
+          <div class="panel-footer clearfix book-footer">
+            <div class="pull-right">
+              <div class="ChiTiet">
+				<a type="button" class="btn btn-primary" th:href="@{'/books/read/' + ${book.id}}">Read</a>
+				<div sec:authorize="hasAnyAuthority('ADMIN')">
+					<a type="button" class="btn btn-success" th:href="@{'/books/edit/' + ${book.id}}">Edit</a>
+				</div>
+				<div sec:authorize="hasAuthority('ADMIN')">
+					<a type="button" class="btn btn-danger" th:href="@{'/books/delete/' + ${book.id}}">Delete</a>
+				</div>
+              </div>
+              <div class="Follow" style="text-align: left">
+              		<a type="button" class="btn btn-primary" th:href="@{'#'}">Follow</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>   
 </body>
 </html>

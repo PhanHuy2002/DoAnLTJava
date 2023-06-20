@@ -64,28 +64,28 @@ public class FillData {
 		Book bookCNTT1 = new Book();
 		bookCNTT1.setTitle("Lap trinh web spring MVC");
 		bookCNTT1.setAuthor("Anh Nguyen");
-		bookCNTT1.setPrice(50000l);
+		bookCNTT1.setStory("Blockchain là chủ đề đang vô cùng nóng trên toàn cầu hiện nay. Nó cùng với Bitcoin và tiền kỹ thuật số trở thành đề tài bàn luận trên rất nhiều mặt báo và trong những cuộc trò chuyện của mọi người. Tuy nhiên, khi nói về blockchain vẫn còn nhiều tranh cãi. Có người lo lắng rằng Bitcoin có thể chỉ là bong bóng, nhiều người cho rằng công nghệ phía sau nó là một sự đột phá, và công nghệ ấy sẽ tiếp tục con đường của mình cho đến khi được chấp nhận và tích hợp với Internet.\r\n");
 		bookCNTT1.setCategory(categoryCNTT);
 		bookRepository.save(bookCNTT1);
 		
 		Book bookCNTT2 = new Book();
 		bookCNTT2.setTitle("Lap trinh Ung dung Spring");
 		bookCNTT2.setAuthor("Anh Nguyen");
-		bookCNTT2.setPrice(150000l);
+		bookCNTT2.setStory("Blockchain là chủ đề đang vô cùng nóng trên toàn cầu hiện nay. Nó cùng với Bitcoin và tiền kỹ thuật số trở thành đề tài bàn luận trên rất nhiều mặt báo và trong những cuộc trò chuyện của mọi người. Tuy nhiên, khi nói về blockchain vẫn còn nhiều tranh cãi. Có người lo lắng rằng Bitcoin có thể chỉ là bong bóng, nhiều người cho rằng công nghệ phía sau nó là một sự đột phá, và công nghệ ấy sẽ tiếp tục con đường của mình cho đến khi được chấp nhận và tích hợp với Internet.\r\n");
 		bookCNTT2.setCategory(categoryCNTT);
 		bookRepository.save(bookCNTT2);
 		
 		Book bookCNTT3 = new Book();
 		bookCNTT3.setTitle("Lap trinh ung dung java");
 		bookCNTT3.setAuthor("Anh Nguyen");
-		bookCNTT3.setPrice(250000l);
+		bookCNTT3.setStory("Blockchain là chủ đề đang vô cùng nóng trên toàn cầu hiện nay. Nó cùng với Bitcoin và tiền kỹ thuật số trở thành đề tài bàn luận trên rất nhiều mặt báo và trong những cuộc trò chuyện của mọi người. Tuy nhiên, khi nói về blockchain vẫn còn nhiều tranh cãi. Có người lo lắng rằng Bitcoin có thể chỉ là bong bóng, nhiều người cho rằng công nghệ phía sau nó là một sự đột phá, và công nghệ ấy sẽ tiếp tục con đường của mình cho đến khi được chấp nhận và tích hợp với Internet.\r\n");
 		bookCNTT3.setCategory(categoryCNTT);
 		bookRepository.save(bookCNTT3);
 		
 		Book bookEng1 = new Book();
 		bookEng1.setTitle("IELTS");
 		bookEng1.setAuthor("Cambridge");
-		bookEng1.setPrice(350000l);
+		bookEng1.setStory("Blockchain là chủ đề đang vô cùng nóng trên toàn cầu hiện nay. Nó cùng với Bitcoin và tiền kỹ thuật số trở thành đề tài bàn luận trên rất nhiều mặt báo và trong những cuộc trò chuyện của mọi người. Tuy nhiên, khi nói về blockchain vẫn còn nhiều tranh cãi. Có người lo lắng rằng Bitcoin có thể chỉ là bong bóng, nhiều người cho rằng công nghệ phía sau nó là một sự đột phá, và công nghệ ấy sẽ tiếp tục con đường của mình cho đến khi được chấp nhận và tích hợp với Internet.\r\n");
 		bookEng1.setCategory(categoryEng);
 		bookRepository.save(bookEng1);
 		

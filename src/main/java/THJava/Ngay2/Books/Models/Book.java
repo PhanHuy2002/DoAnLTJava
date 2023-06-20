@@ -13,10 +13,16 @@ public class Book {
 	private String title;
 	@Column(name = "author", nullable = false, length = 255)
 	private String author;
-	@Column(name = "price")
-	private Long price;
+	@Column(name= "story",nullable = true,length = 500)
+	private String story;
 	@Column(nullable = true, length = 255)
 	private String photourl;
+	public String getStory() {
+		return story;
+	}
+	public void setStory(String story) {
+		this.story = story;
+	}
 	@Column(name="isdeleted",columnDefinition = "boolean default false")
 	private boolean isdeleted;
 	
@@ -56,12 +62,6 @@ public class Book {
 	}
 	public void setAuthor(String author) {
 		this.author = author;
-	}
-	public Long getPrice() {
-		return price;
-	}
-	public void setPrice(Long price) {
-		this.price = price;
 	}
 	public Category getCategory() {
 		return category;
