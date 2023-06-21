@@ -13,7 +13,7 @@ public class Book {
 	private String title;
 	@Column(name = "author", nullable = false, length = 255)
 	private String author;
-	@Column(name= "story",nullable = true,length = 500)
+	@Column(name= "story",nullable = true,length = 100000000)
 	private String story;
 	@Column(nullable = true, length = 255)
 	private String photourl;

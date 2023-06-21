@@ -3,6 +3,11 @@
 	xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Search Results</title>
+    <link rel="stylesheet" type="text/css"
+	href="/webjars/bootstrap/css/bootstrap.min.css" />
+<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+<script type="text/javascript"
+	src="/webjars/bootstrap/js/bootstrap.min.js"></script>
     <style>
     .book-container {
       margin-bottom: 20px;
@@ -49,7 +54,7 @@
             <p>Author: <span th:text="${book.author}"></span></p>
             <p>Category: <span th:text="${book.category.name}"></span></p>
           </div>
-          <div class="panel-footer clearfix book-footer">
+           <div class="panel-footer clearfix book-footer">
             <div class="pull-right">
               <div class="ChiTiet">
 				<a type="button" class="btn btn-primary" th:href="@{'/books/read/' + ${book.id}}">Read</a>
@@ -60,9 +65,6 @@
 					<a type="button" class="btn btn-danger" th:href="@{'/books/delete/' + ${book.id}}">Delete</a>
 				</div>
               </div>
-<!--               <div class="Follow" style="text-align: left" > -->
-<!--               		<a type="button" class="btn btn-primary" th:href="@{'/books/favorite/' + ${book.id}}">Follow</a> -->
-<!--               </div> -->
             </div>
           </div>
         </div>

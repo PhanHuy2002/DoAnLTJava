@@ -23,11 +23,11 @@
 					class="form-control" type="text" th:field="*{title}" /></strong>
 			</div>
 			<div class="col-6 mb-3">
-				<label class="col-sm-2 col-form-label">Book Author:</label> <input
+				<strong><label class="col-sm-2 col-form-label" style="color: yellow">Book Author:</label></strong> <input
 					class="form-control" type="text" th:field="*{author}" />
 			</div>
 			<div class="col-6 mb-3">
-				<label class="col-sm-2 col-form-label">Book Category:</label> <select
+				<strong><label class="col-sm-2 col-form-label" style="color: yellow">Book Category:</label> </strong><select
 					class="form-control" th:field="*{category}">
 					<option value="">Select Category</option>
 					<option th:each="category : ${categories}"
@@ -35,12 +35,12 @@
 				</select>
 			</div>
 			<div class="col-6 mb-3">
-				<label class="col-sm-2 col-form-label">Photos:</label> <input
+				<strong><label class="col-sm-2 col-form-label" style="color: yellow">Photos:</label></strong> <input
 					class="form-control" type="file" name="image"
 					accept="image/png, image/jpeg" />
 			</div>
 			<div class="col-6 mb-3">
-				<label class="col-sm-2 col-form-label">Nội Dung:</label> <input
+				<strong><label class="col-sm-2 col-form-label" style="color: yellow">Nội Dung:</label></strong> <input
 					class="form-control" type="text" th:field="*{story}" />
 			</div>
 			<button type="submit" class="btn btn-primary">Save</button>
