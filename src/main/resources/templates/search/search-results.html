@@ -2,14 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Danh sách Truyện</title>
-<link rel="stylesheet" type="text/css"
-	href="/webjars/bootstrap/css/bootstrap.min.css" />
-<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-<script type="text/javascript"
-	src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-<style>
+    <title>Search Results</title>
+    <style>
     .book-container {
       margin-bottom: 20px;
       background-color: rgb(231, 220, 126);
@@ -39,23 +33,10 @@
 }
   </style>
 </head>
-<body >
-	<header th:insert="layout/fragment.html :: header"> </header>
-		<div class="image">
-			<h2 style="text-align: center;color: white;">Danh sách Truyện</h2>
-        <p>
-  <div class="col-4 mb-2" style="text-align: center;">
-    <form class="d-flex" th:action="@{/books/search}" method="get">
-      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="keyword">
-      <button class="btn btn-outline-success" type="submit" style="background-color:#dee2e6;color:red;">Search</button>
-    </form>
-  </div>
-          <div sec:authorize="hasAnyAuthority('ADMIN')" style="text-align: center">
-			<a href="/books/new" class="btn btn-outline-success" type="submit" style="background-color:#dee2e6;color:red;">Create New Book</a>
-		</div>
-  </p>
-     <div class="row" >
-    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" th:each="book : ${books}" style="margin:auto;">
+<body>
+    <h1>Search Results</h1>
+   <div class="row" >
+    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" th:each="book : ${book}" style="margin:auto;">
       <div class="book-container" style="width: 300px " >
         <div class="panel panel-default">
           <div class="panel-heading book-header">
@@ -79,16 +60,14 @@
 					<a type="button" class="btn btn-danger" th:href="@{'/books/delete/' + ${book.id}}">Delete</a>
 				</div>
               </div>
-              <div class="Follow" style="text-align: left" >
-              		<a type="button" class="btn btn-primary" th:href="@{'/books/favorite/' + ${book.id}}">Follow</a>
-              </div>
+<!--               <div class="Follow" style="text-align: left" > -->
+<!--               		<a type="button" class="btn btn-primary" th:href="@{'/books/favorite/' + ${book.id}}">Follow</a> -->
+<!--               </div> -->
             </div>
           </div>
         </div>
       </div>
     </div>
     </div>
-  </div>   
 </body>
-
 </html>

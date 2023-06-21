@@ -69,6 +69,7 @@ public class Book {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
+	
 	@Transient
 	public String getPhotosImagePath() {
 		if (photourl == null || id == null)

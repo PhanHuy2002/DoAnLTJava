@@ -42,7 +42,7 @@
 <body >
 	<header th:insert="layout/fragment.html :: header"> </header>
 		<div class="image">
-			<h2 style="text-align: center;color: white;">Danh sách Truyện</h2>
+			<h2 style="text-align: center;color: white;">Danh sách Truyện yêu thích</h2>
         <p>
   <div class="col-4 mb-2" style="text-align: center;">
     <form class="d-flex" th:action="@{/books/search}" method="get">
@@ -52,6 +52,7 @@
   </div>
           <div sec:authorize="hasAnyAuthority('ADMIN')" style="text-align: center">
 			<a href="/books/new" class="btn btn-outline-success" type="submit" style="background-color:#dee2e6;color:red;">Create New Book</a>
+			</div>
 		</div>
   </p>
      <div class="row" >
@@ -72,23 +73,15 @@
             <div class="pull-right">
               <div class="ChiTiet">
 				<a type="button" class="btn btn-primary" th:href="@{'/books/read/' + ${book.id}}">Read</a>
-				<div sec:authorize="hasAnyAuthority('ADMIN')">
-					<a type="button" class="btn btn-success" th:href="@{'/books/edit/' + ${book.id}}">Edit</a>
-				</div>
-				<div sec:authorize="hasAuthority('ADMIN')">
-					<a type="button" class="btn btn-danger" th:href="@{'/books/delete/' + ${book.id}}">Delete</a>
-				</div>
               </div>
-              <div class="Follow" style="text-align: left" >
-              		<a type="button" class="btn btn-primary" th:href="@{'/books/favorite/' + ${book.id}}">Follow</a>
-              </div>
+				<td>Remove</td>
             </div>
           </div>
         </div>
       </div>
     </div>
-    </div>
-  </div>   
+    <a class="btn btn-primary btn-sm" href="#"></a>
+    </div> 
 </body>
 
 </html>

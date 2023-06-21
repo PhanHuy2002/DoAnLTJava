@@ -29,6 +29,7 @@ import THJava.Ngay2.Books.Models.Book;
 import THJava.Ngay2.Books.Models.User;
 import THJava.Ngay2.Books.Services.BookServices;
 import THJava.Ngay2.Books.Services.CategoryService;
+import THJava.Ngay2.Books.Services.FavoriteList;
 import THJava.Ngay2.Books.Utils.FileUploadUtil;
 
 import java.text.DateFormat;
@@ -41,6 +42,8 @@ public class BookController {
 	private BookServices bookServices;
 	@Autowired
 	private CategoryService categoryService;
+    @Autowired
+	private FavoriteList favoriteList;
 
 	@GetMapping
 	public String viewAllBook(Model model) {
@@ -48,7 +51,6 @@ public class BookController {
 		model.addAttribute("books", listBook);
 		return "book/index";
 	}
-	
 	@GetMapping("/read/{id}")
 	public String detail(@PathVariable("id") Long id, Model model) {
 //	     Xử lý lấy thông tin của cuốn sách với ID tương ứng
@@ -69,6 +71,28 @@ public class BookController {
 		return "book/new_book";
 	}
 
+	@GetMapping("/favorite/{id}")
+    public String addToFavoriteList(@PathVariable("id") Long id, Model model) {
+        // Lấy thông tin sách từ bookId
+        Book book = bookServices.get(id);
+
+        // Thêm sách vào danh sách yêu thích
+        favoriteList.addToFavoriteList(book);
+        
+        model.addAttribute("favoriteList", favoriteList.getFavoriteItems());
+
+        return "follows/follow"; 
+    }
+	@PostMapping("/books/{bookId}/remove-from-favorite")
+    public String removeFromFavoriteList(@PathVariable("bookId") Long bookId) {
+        // Lấy thông tin sách từ bookId
+        Book book = bookServices.get(bookId);
+
+        // Xóa sách khỏi danh sách yêu thích
+        favoriteList.removeFromFavoriteList(book);
+
+        return "follows/follow";
+    }
 	@PostMapping("/save")
 	public String saveBook(@ModelAttribute("book") Book book, @RequestParam("image") MultipartFile multipartFile)throws IOException {
 		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
@@ -111,6 +135,13 @@ public class BookController {
 		}
 	}
 
+	@GetMapping("/search")
+    public String searchBooks(@RequestParam("keyword") String keyword, Model model) {
+        List<Book> book = bookServices.searchBook(keyword);
+        model.addAttribute("book", book);
+        return "search/search-results";
+    }
+	
 	@GetMapping("/export")
 	public void exportToCSV(HttpServletResponse response)
 			throws IOException, CsvDataTypeMismatchException, CsvRequiredFieldEmptyException {
@@ -139,4 +170,5 @@ public class BookController {
 		// write all users to csv file
 		writer.write(books);
 	}
+	
 }
